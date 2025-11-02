@@ -1,0 +1,1819 @@
+    <!DOCTYPE html>
+<html lang="id" data-lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syarar Tech - Jasa Service Komputer & Laptop Profesional</title>
+    
+    <!-- Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(28, 78, 128, 0.3); }
+            50% { box-shadow: 0 0 50px rgba(28, 78, 128, 0.5); }
+        }
+        
+        @keyframes slide-in-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+        .animate-slide-in-up { animation: slide-in-up 0.8s ease-out forwards; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4, #8b5cf6);
+            background-size: 200% 200%;
+            animation: gradient-shift 3s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        }
+        
+        .neon-border {
+            border: 2px solid #3b82f6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+        
+        /* Canvas Background */
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+        
+        .nav-menu-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .logo-text {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        
+        .nav-link {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: #3b82f6;
+            font-weight: 600;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .language-select {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .language-select:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .language-select option {
+            background: #1a1a1a;
+            color: white;
+        }
+        
+        /* Sections */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 80px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mb-4 { margin-bottom: 16px; }
+        .mb-6 { margin-bottom: 24px; }
+        .mb-8 { margin-bottom: 32px; }
+        .mb-12 { margin-bottom: 48px; }
+        .mb-16 { margin-bottom: 64px; }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(0, 0, 0, 0.8), rgba(139, 92, 246, 0.1));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(36px, 8vw, 72px);
+            font-weight: bold;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+        
+        .hero p {
+            font-size: clamp(18px, 3vw, 24px);
+            color: #d1d5db;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        }
+        
+        .card-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        .card h3 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .card p {
+            color: #9ca3af;
+            margin-bottom: 16px;
+        }
+        
+        .card-list {
+            list-style: none;
+        }
+        
+        .card-list li {
+            color: #d1d5db;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-list li::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #3b82f6;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        /* Grid */
+        .grid {
+            display: grid;
+            gap: 32px;
+        }
+        
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        }
+        
+        /* Team Section */
+        .team-card {
+            text-align: center;
+        }
+        
+        .team-avatar {
+            width: 96px;
+            height: 96px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            border: 2px solid #3b82f6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            overflow: hidden;
+        }
+
+        .team-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .badge-primary {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+        }
+        
+        .badge-secondary {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.5);
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 16px;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .skill-badge {
+            background: rgba(255, 255, 255, 0.1);
+            color: #d1d5db;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin: 4px;
+            white-space: nowrap;
+        }
+        
+        /* Testimonials */
+        .testimonial-card {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .stars {
+            color: #fbbf24;
+            margin-bottom: 16px;
+        }
+        
+        .testimonial-text {
+            font-size: 18px;
+            font-style: italic;
+            color: #d1d5db;
+            margin-bottom: 16px;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: white;
+        }
+        
+        .testimonial-position {
+            color: #9ca3af;
+            font-size: 14px;
+        }
+        
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4b5563;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dot.active {
+            background: #3b82f6;
+            width: 32px;
+            border-radius: 4px;
+        }
+        
+        /* Contact Form */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #d1d5db;
+        }
+        
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-family: inherit;
+        }
+        
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: #6b7280;
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(180deg, transparent, rgba(59, 130, 246, 0.1));
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 48px 20px 24px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 16px;
+            color: white;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #3b82f6;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3b82f6;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: rgba(59, 130, 246, 0.3);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            color: #6b7280;
+        }
+        
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-1 {
+            top: 80px;
+            left: 40px;
+            width: 80px;
+            height: 80px;
+        }
+        
+        .floating-2 {
+            bottom: 80px;
+            right: 40px;
+            width: 128px;
+            height: 128px;
+            animation-delay: 2s;
+        }
+        
+        .floating-3 {
+            top: 50%;
+            left: 25%;
+            width: 64px;
+            height: 64px;
+            animation-delay: 4s;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .mobile-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.9);
+                backdrop-filter: blur(10px);
+                border-radius: 8px;
+                margin-top: 8px;
+                padding: 16px;
+            }
+            
+            .mobile-menu li {
+                list-style: none;
+                margin-bottom: 8px;
+            }
+            
+            .mobile-menu a {
+                color: #d1d5db;
+                text-decoration: none;
+                display: block;
+                padding: 8px 16px;
+                border-radius: 4px;
+                transition: all 0.3s ease;
+            }
+            
+            .mobile-menu a:hover, .mobile-menu a.active {
+                background: rgba(59, 130, 246, 0.2);
+                color: #3b82f6;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Hidden class */
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Opacity animation */
+        .opacity-0 {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .opacity-1 {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Canvas Background -->
+    <canvas id="particleCanvas"></canvas>
+    
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <div class="logo-icon" style="width: 30px; height: 30px; margin-right: 10px;">
+                    <img src="https://i.ibb.co/xqycQ0B8/logo.jpg" alt="Syarar Tech Logo" style="width:100%;height:100%;">
+                </div>
+                <span class="logo-text gradient-text" data-translate="brandName">Syarar Tech</span>
+            </a>
+            
+            <div class="nav-menu-container">
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link" data-translate="menuHome">Home</a></li>
+                    <li><a href="#services" class="nav-link" data-translate="menuServices">Services</a></li>
+                    <li><a href="#about" class="nav-link" data-translate="menuAbout">About</a></li>
+                    <li><a href="#team" class="nav-link" data-translate="menuTeam">Team</a></li>
+                    <li><a href="#contact" class="nav-link" data-translate="menuContact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-right">
+                <select id="languageSelect" class="language-select" onchange="changeLanguage(this.value)">
+                    <option value="id">🇮🇩 ID</option>
+                    <option value="en">🇬🇧 EN</option>
+                </select>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i data-lucide="menu" style="width: 24px; height: 24px;"></i>
+                </button>
+            </div>
+            
+            <div class="mobile-menu hidden" id="mobileMenu">
+                <li><a href="#home" class="nav-link" data-translate="menuHome">Home</a></li>
+                <li><a href="#services" class="nav-link" data-translate="menuServices">Services</a></li>
+                <li><a href="#about" class="nav-link" data-translate="menuAbout">About</a></li>
+                <li><a href="#team" class="nav-link" data-translate="menuTeam">Team</a></li>
+                <li><a href="#contact" class="nav-link" data-translate="menuContact">Contact</a></li>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="floating-element floating-1"></div>
+        <div class="floating-element floating-2"></div>
+        <div class="floating-element floating-3"></div>
+        
+        <div class="hero-content animate-slide-in-up">
+            <h1>
+                <span class="gradient-text" data-translate="heroTitle">Jasa Service Komputer & Laptop</span><br>
+                <span data-translate="heroSuffix">Professional</span>
+            </h1>
+            <p data-translate="heroSubtitle">
+                Solusi Cepat, Teknologi Tepat Bersama Syarar Tech.
+            </p>
+            <div class="btn-group">
+                <a href="#contact" class="btn btn-primary">
+                    <i data-lucide="zap" style="width: 20px; height: 20px;"></i>
+                    <span data-translate="orderNow">Pesan Sekarang</span>
+                </a>
+                <a href="https://wa.me/6285848155578?text=Halo%20IT%20Service,%20saya%20ingin%20berkonsultasi%20tentang%20service%20komputer/laptop." 
+                   target="_blank" class="btn btn-secondary">
+                    <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
+                    <span data-translate="contactUs">Hubungi Kami</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="text-center mb-16 opacity-0">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text" data-translate="servicesTitle">Layanan Kami</h2>
+                <p class="text-xl text-gray-400" data-translate="servicesSubtitle">Solusi lengkap untuk semua kebutuhan IT Anda</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <div class="card opacity-0">
+                    <div class="card-icon">
+                        <i data-lucide="monitor" style="width: 32px; height: 32px; color: #3b82f6;"></i>
+                    </div>
+                    <h3 data-translate="installTitle">Install Ulang Windows/Linux</h3>
+                    <p data-translate="installDesc">Install ulang sistem operasi Windows dan Linux dengan driver lengkap</p>
+                    <ul class="card-list">
+                        <li data-translate="windows">Windows 10/11</li>
+                        <li data-translate="linux">Ubuntu/Linux Mint</li>
+                        <li data-translate="driver">Driver Installation</li>
+                        <li data-translate="software">Software Setup</li>
+                    </ul>
+                </div>
+                
+                <div class="card opacity-0">
+                    <div class="card-icon">
+                        <i data-lucide="cpu" style="width: 32px; height: 32px; color: #3b82f6;"></i>
+                    </div>
+                    <h3 data-translate="upgradeTitle">Upgrade RAM & SSD</h3>
+                    <p data-translate="upgradeDesc">Upgrade komponen untuk performa maksimal dan booting lebih cepat</p>
+                    <ul class="card-list">
+                        <li data-translate="ramUpgrade">RAM Upgrade</li>
+                        <li data-translate="ssdInstall">SSD Installation</li>
+                        <li data-translate="perfTuning">Performance Tuning</li>
+                        <li data-translate="compConsult">Component Consultation</li>
+                    </ul>
+                </div>
+                
+                <div class="card opacity-0">
+                    <div class="card-icon">
+                        <i data-lucide="hard-drive" style="width: 32px; height: 32px; color: #3b82f6;"></i>
+                    </div>
+                    <h3 data-translate="maintenanceTitle">Perawatan Hardware</h3>
+                    <p data-translate="maintenanceDesc">Cleaning dan maintenance hardware untuk umur panjang</p>
+                    <ul class="card-list">
+                        <li data-translate="dustClean">Dust Cleaning</li>
+                        <li data-translate="thermal">Thermal Paste</li>
+                        <li data-translate="cable">Cable Management</li>
+                        <li data-translate="hwCheck">Hardware Check</li>
+                    </ul>
+                </div>
+                
+                <div class="card opacity-0">
+                    <div class="card-icon">
+                        <i data-lucide="shield" style="width: 32px; height: 32px; color: #3b82f6;"></i>
+                    </div>
+                    <h3 data-translate="repairTitle">Perbaikan Laptop/PC</h3>
+                    <p data-translate="repairDesc">Service hardware dan software untuk berbagai masalah</p>
+                    <ul class="card-list">
+                        <li data-translate="noDisplay">No Display</li>
+                        <li data-translate="overheating">Overheating</li>
+                        <li data-translate="blueScreen">Blue Screen</li>
+                        <li data-translate="hwRepair">Hardware Repair</li>
+                    </ul>
+                </div>
+                
+                <div class="card opacity-0">
+                    <div class="card-icon">
+                        <i data-lucide="zap" style="width: 32px; height: 32px; color: #3b82f6;"></i>
+                    </div>
+                    <h3 data-translate="optimizeTitle">Optimasi Software</h3>
+                    <p data-translate="optimizeDesc">Optimasi sistem untuk performa terbaik dan stabil</p>
+                    <ul class="card-list">
+                        <li data-translate="speedOpt">Speed Optimization</li>
+                        <li data-translate="virusRemoval">Virus Removal</li>
+                        <li data-translate="sysClean">System Cleanup</li>
+                        <li data-translate="swUpdates">Software Updates</li>
+                    </ul>
+                </div>
+                
+                <div class="card opacity-0">
+                    <div class="card-icon">
+                        <i data-lucide="wifi" style="width: 32px; height: 32px; color: #3b82f6;"></i>
+                    </div>
+                    <h3 data-translate="backupTitle">Backup & Recovery</h3>
+                    <p data-translate="backupDesc">Backup data penting dan recovery data yang hilang</p>
+                    <ul class="card-list">
+                        <li data-translate="dataBackup">Data Backup</li>
+                        <li data-translate="fileRecovery">File Recovery</li>
+                        <li data-translate="cloudSetup">Cloud Setup</li>
+                        <li data-translate="dataMigration">Data Migration</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" style="background: linear-gradient(180deg, #000, rgba(59, 130, 246, 0.1));">
+        <div class="container">
+            <div class="grid grid-2" style="align-items: center;">
+                <div class="opacity-0">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text" data-translate="aboutTitle">Tentang Kami</h2>
+                    <p class="text-lg text-gray-300 mb-6" data-translate="aboutText1">
+                        IT Service adalah penyedia layanan komputer dan laptop profesional yang telah 
+                        berpengalaman lebih dari 5 tahun dalam industri IT. Kami berkomitmen untuk 
+                        memberikan solusi teknologi terbaik dengan harga terjangkau.
+                    </p>
+                    <p class="text-lg text-gray-300 mb-6" data-translate="aboutText2">
+                        Dengan tim ahli yang bersertifikat dan peralatan modern, kami siap 
+                        menangani berbagai masalah teknologi dari yang sederhana hingga kompleks. 
+                        Kepuasan pelanggan adalah prioritas utama kami.
+                    </p>
+                    <div class="grid grid-2" style="grid-template-columns: 1fr 1fr; gap: 24px;">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-blue-400 mb-2">1000+</div>
+                            <div class="text-gray-400" data-translate="satisfied">Pelanggan Puas</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-blue-400 mb-2">5+</div>
+                            <div class="text-gray-400" data-translate="experience">Tahun Pengalaman</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="opacity-0">
+                    <div style="position: relative;">
+                        <div style="width: 400px; height: 400px; margin: 0 auto; background: linear-gradient(135deg, rgba(13, 38, 76, 0.2), rgba(28, 78, 128, 0.2)); border-radius: 16px; display: flex; align-items: center; justify-content: center; animation: pulse-glow 2s ease-in-out infinite; overflow: hidden; box-shadow: 0 0 40px rgba(28, 78, 128, 0.3);">
+                            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, rgba(28, 78, 128, 0.1) 0%, rgba(13, 38, 76, 0.2) 100%);">
+                                <img src="https://i.ibb.co/xqycQ0B8/logo.jpg" alt="Syarar Tech Logo" style="width: 100%; height: 100%; object-fit: contain; padding: 15px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Team Section -->
+    <section id="team">
+        <div class="container">
+            <div class="text-center mb-16 opacity-0">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text" data-translate="teamTitle">Tim Kami</h2>
+                <p class="text-xl text-gray-400" data-translate="teamSubtitle">6 ahli IT berpengalaman siap membantu Anda</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <div class="card team-card opacity-0" style="text-align: center;">
+                    <div class="team-avatar" style="width: 100%; height: 300px; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
+                        <img src="https://i.ibb.co/q3Rp7jCp/Apik.jpg" alt="Apik Rendi Firmansyah" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <h3 style="margin-bottom: 8px; font-size: 24px;">Apik Rendi Firmansyah</h3>
+                    <div class="badge badge-primary" style="margin-bottom: 12px; display: inline-block;"><span data-translate="hardwareSpec">Hardware Specialist</span></div>
+                    <p style="color: #6B7280; font-size: 16px; margin-bottom: 16px; text-align: center;" data-translate="hardwareSpecDesc">
+                        Spesialis perbaikan hardware dan upgrade komputer dengan pengalaman 5+ tahun
+                    </p>
+                    <div style="margin-bottom: 16px; display: flex; gap: 12px; justify-content: center;">
+                        <a href="https://www.instagram.com/freakingrend" target="_blank" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
+                        </a>
+                        <a href="mailto:apik@syarartech.com" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        </a>
+                    </div>
+                    <!-- Removed duplicate description -->
+                    <div class="skills">
+                        <span class="skill-badge" data-translate="hardwareRepair">Hardware Repair</span>
+                        <span class="skill-badge" data-translate="pcBuilding">PC Building</span>
+                        <span class="skill-badge" data-translate="compDiag">Component Diagnosis</span>
+                        <span class="skill-badge" data-translate="upgradeSpec">Upgrade Specialist</span>
+                    </div>
+                </div>
+
+                <div class="card team-card opacity-0">
+                    <div class="team-avatar" style="width: 100%; height: 300px; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
+                        <img src="https://i.ibb.co/JwRHpsy6/Mochammad.jpg" alt="Mochammad Rizqi Dirgantoro" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <h3 style="margin-bottom: 8px; font-size: 24px;">Mochammad Rizqi Dirgantoro</h3>
+                    <div class="badge badge-primary" style="margin-bottom: 12px;" data-translate="softwareEng">Software Engineer</div>
+                    <p style="color: #6B7280; font-size: 16px; margin-bottom: 16px;" data-translate="softwareEngDesc">
+                        Expert dalam troubleshooting software dan instalasi sistem operasi
+                    </p>
+                    <div style="margin-bottom: 16px; display: flex; gap: 12px; justify-content: center;">
+                        <a href="https://www.instagram.com/rizzdirga" target="_blank" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
+                        </a>
+                        <a href="mailto:rizqi@syarartech.com" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        </a>
+                    </div>
+                    <!-- Removed duplicate description -->
+                    <div class="skills">
+                        <span class="skill-badge" data-translate="osInstall">OS Installation</span>
+                        <span class="skill-badge" data-translate="softwareTrouble">Software Troubleshooting</span>
+                        <span class="skill-badge" data-translate="driverManage">Driver Management</span>
+                        <span class="skill-badge" data-translate="sysOptimize">System Optimization</span>
+                    </div>
+                </div>
+
+                <div class="card team-card opacity-0">
+                    <div class="team-avatar" style="width: 100%; height: 300px; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
+                        <img src="https://i.ibb.co/N2HkLqDc/Muhammad.jpg" alt="Muhammad Rio Al Awal" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <h3 style="margin-bottom: 8px; font-size: 24px;">Muhammad Rio Al Awal</h3>
+                    <div class="badge badge-primary" style="margin-bottom: 12px;" data-translate="networkEng">Network Engineer</div>
+                    <p style="color: #6B7280; font-size: 16px; margin-bottom: 16px;" data-translate="networkEngDesc">
+                        Ahli jaringan dan konfigurasi sistem untuk kantor dan rumah
+                    </p>
+                    <div style="margin-bottom: 16px; display: flex; gap: 12px; justify-content: center;">
+                        <a href="https://www.instagram.com/viii_allll" target="_blank" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
+                        </a>
+                        <a href="mailto:rio@syarartech.com" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="skills">
+                        <span class="skill-badge" data-translate="networkSetup">Network Setup</span>
+                        <span class="skill-badge" data-translate="wifiConfig">WiFi Configuration</span>
+                        <span class="skill-badge" data-translate="securitySys">Security Systems</span>
+                        <span class="skill-badge" data-translate="cableManage">Cable Management</span>
+                    </div>
+                </div>
+
+                <div class="card team-card opacity-0">
+                    <div class="team-avatar" style="width: 100%; height: 300px; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
+                        <img src="https://i.ibb.co/C3PXthZL/Yaqut.jpg" alt="Yaqut Mubarok Nailur Raja" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <h3 style="margin-bottom: 8px; font-size: 24px;">Yaqut Mubarok Nailur Raja</h3>
+                    <div class="badge badge-primary" style="margin-bottom: 12px;"><span data-translate="dataRecovery">Data Recovery Expert</span></div>
+                    <p style="color: #6B7280; font-size: 16px; margin-bottom: 16px;" data-translate="dataRecoveryDesc">
+                        Specialist in data recovery and backup system restoration
+                    </p>
+                    <div style="margin-bottom: 16px; display: flex; gap: 12px; justify-content: center;">
+                        <a href="https://www.instagram.com/nailur.rajaa" target="_blank" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
+                        </a>
+                        <a href="mailto:yaqut@syarartech.com" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        </a>
+                    </div>
+                    <!-- Removed duplicate description -->
+                    <div class="skills">
+                        <span class="skill-badge" data-translate="dataRecoverySkills">Data Recovery</span>
+                        <span class="skill-badge" data-translate="backupSol">Backup Solutions</span>
+                        <span class="skill-badge" data-translate="digitalForensics">Forensik Digital</span>
+                        <span class="skill-badge" data-translate="raidRecovery">RAID Recovery</span>
+                    </div>
+                </div>
+
+                <div class="card team-card opacity-0">
+                    <div class="team-avatar" style="width: 100%; height: 300px; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
+                        <img src="https://i.ibb.co/LhkT1Hdy/Bagus.jpg" alt="Bagus Zandra Ihsani" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <h3 style="margin-bottom: 8px; font-size: 24px;">Bagus Zandra Ihsani</h3>
+                    <div class="badge badge-primary" style="margin-bottom: 12px;"><span data-translate="gamingSpec">Gaming PC Builder</span></div>
+                    <p style="color: #6B7280; font-size: 16px; margin-bottom: 16px;" data-translate="gamingSpecDesc">
+                    </p>
+                    <div style="margin-bottom: 16px; display: flex; gap: 12px; justify-content: center;">
+                        <a href="https://www.instagram.com/zandraisani" target="_blank" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
+                        </a>
+                        <a href="mailto:bagus@syarartech.com" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        </a>
+                    </div>
+                    <!-- Removed duplicate description -->
+                    <div class="skills">
+                        <span class="skill-badge" data-translate="gamingBuild">Gaming PC Build</span>
+                        <span class="skill-badge" data-translate="overclocking">Overclocking</span>
+                        <span class="skill-badge" data-translate="perfTuning">Performance Tuning</span>
+                        <span class="skill-badge" data-translate="rgbSetup">RGB Setup</span>
+                    </div>
+                </div>
+
+                <div class="card team-card opacity-0">
+                    <div class="team-avatar" style="width: 100%; height: 300px; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
+                        <img src="https://i.ibb.co/0yYwH31Z/Reski.jpg" alt="Reski Angga Pratama" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <h3 style="margin-bottom: 8px; font-size: 24px;">Reski Angga Pratama</h3>
+                    <div class="badge badge-primary" style="margin-bottom: 12px;"><span data-translate="custRelations">Customer Relations</span></div>
+                    <p style="color: #6B7280; font-size: 16px; margin-bottom: 16px;" data-translate="custRelationsDesc">
+                    </p>
+                    <div style="margin-bottom: 16px; display: flex; gap: 12px; justify-content: center;">
+                        <a href="https://www.instagram.com/reskianggaa" target="_blank" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
+                        </a>
+                        <a href="mailto:reski@syarartech.com" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        </a>
+                    </div>
+                    <!-- Removed duplicate description -->
+                    </p>
+                    <div class="skills">
+                        <span class="skill-badge" data-translate="custService">Customer Service</span>
+                        <span class="skill-badge" data-translate="projManagement">Project Management</span>
+                        <span class="skill-badge" data-translate="communication">Communication</span>
+                        <span class="skill-badge" data-translate="qualityControl">Quality Control</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section id="testimonials" style="background: linear-gradient(180deg, #000, rgba(59, 130, 246, 0.1));">
+        <div class="container">
+            <div class="text-center mb-16 opacity-0">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text" data-translate="testimonialsTitle">Testimoni Pelanggan</h2>
+                <p class="text-xl text-gray-400" data-translate="testimonialsSubtitle">Apa kata mereka tentang layanan kami</p>
+            </div>
+            
+            <div class="testimonial-card card opacity-0">
+                <div class="stars" id="stars">
+                    <i data-lucide="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                    <i data-lucide="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                    <i data-lucide="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                    <i data-lucide="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                    <i data-lucide="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
+                </div>
+                <p class="testimonial-text" id="testimonialText" data-translate="testimonialText">
+                    "Service sangat memuaskan! Laptop saya yang mati total bisa hidup lagi dalam 2 hari. Tim profesional dan ramah."
+                </p>
+                <div class="testimonial-author" id="testimonialAuthor" data-translate="testimonialAuthor">Andi Wijaya</div>
+                <div class="testimonial-position" id="testimonialPosition" data-translate="testimonialPosition">CEO Tech Startup</div>
+            </div>
+            
+            <div class="testimonial-nav">
+                <div class="dot active" onclick="showTestimonial(0)"></div>
+                <div class="dot" onclick="showTestimonial(1)"></div>
+                <div class="dot" onclick="showTestimonial(2)"></div>
+                <div class="dot" onclick="showTestimonial(3)"></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="text-center mb-16 opacity-0">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text" data-translate="contactTitle">Hubungi Kami</h2>
+                <p class="text-xl text-gray-400" data-translate="contactSubtitle">Siap membantu 24/7 untuk kebutuhan IT Anda</p>
+            </div>
+            
+            <div class="grid grid-2">
+                <div class="opacity-0">
+                    <div class="card">
+                        <h3 style="font-size: 24px; margin-bottom: 8px; color: white;" data-translate="sendMessage">Kirim Pesan</h3>
+                        <p style="color: #9ca3af; margin-bottom: 24px;" data-translate="messageResponse">Kami akan segera merespon pesan Anda</p>
+                        <form action="https://formsubmit.co/e38e09fc01b85e13b3f1be07940c5dba" method="POST" style="display:flex;flex-direction:column;gap:16px;">
+                            <input type="hidden" name="_next" value="https://mochrizz.github.io/XII_TJKT1_Kelompok1.github.io/thank-you.html">
+                            <input type="hidden" name="_subject" value="Pesan Baru dari Website Syarar Tech">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_captcha" value="true">
+                            <input type="text" name="nama" placeholder="Nama Anda" required data-translate="yourName" style="padding:12px;border-radius:6px;border:1px solid #ccc;background:rgba(255,255,255,0.1);color:white;">
+                            <input type="email" name="email" placeholder="Email Anda" required data-translate="yourEmail" style="padding:12px;border-radius:6px;border:1px solid #ccc;background:rgba(255,255,255,0.1);color:white;">
+                            <textarea name="pesan" placeholder="Pesan Anda" required data-translate="yourMessage" style="padding:12px;border-radius:6px;border:1px solid #ccc;min-height:100px;background:rgba(255,255,255,0.1);color:white;"></textarea>
+                            <button type="submit" style="background:#3b82f6;color:#fff;padding:12px;border:none;border-radius:6px;font-weight:bold;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;">
+                                <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                                <span data-translate="sendMessage">Kirim Pesan</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="opacity-0">
+                    <div class="contact-info card">
+                        <div class="contact-icon">
+                            <i data-lucide="phone" style="width: 24px; height: 24px; color: #3b82f6;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; color: white;" data-translate="phoneLabel">Telepon</div>
+                            <div style="color: #9ca3af;">0858-4815-5578</div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info card">
+                        <div class="contact-icon">
+                            <i data-lucide="mail" style="width: 24px; height: 24px; color: #3b82f6;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; color: white;" data-translate="emailLabel">Email</div>
+                            <div style="color: #9ca3af;">pamanerizqi@gmail.com</div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info card">
+                        <div class="contact-icon">
+                            <i data-lucide="map-pin" style="width: 24px; height: 24px; color: #3b82f6;"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; color: white;" data-translate="addressLabel">Alamat</div>
+                            <div style="color: #9ca3af;">SMKN 1 Purwokerto, TJKT</div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://wa.me/6285848155578?text=Halo%20IT%20Service,%20saya%20ingin%20berkonsultasi%20tentang%20service%20komputer/laptop." 
+                       target="_blank" class="btn btn-primary" style="width: 100%; background: #10b981;">
+                        <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
+                        <span data-translate="chatWhatsApp">Chat via WhatsApp</span>
+                    </a>
+                    
+                    <div style="width: 100%; height: 256px; border-radius: 16px; overflow: hidden; margin-top: 16px;">
+                        <iframe src="https://www.google.com/maps?q=SMKN+1+Purwokerto&output=embed" width="100%" height="256" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+                    <div style="width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                        <img src="https://i.ibb.co/xqycQ0B8/logo.jpg" alt="Syarar Tech Logo" style="width:32px;height:32px;">
+                    </div>
+                    <span style="font-size: 20px; font-weight: bold;" class="gradient-text" data-translate="brandName">Syarar Tech</span>
+                </div>
+                <p style="color: #9ca3af;" data-translate="footerTagline">
+                    Solusi teknologi terpercaya untuk semua kebutuhan komputer dan laptop Anda.
+                </p>
+            </div>
+            
+            <div>
+                <h3 style="color: white; margin-bottom: 16px;" data-translate="quickLinksTitle">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home" data-translate="menuHome">Home</a></li>
+                    <li><a href="#services" data-translate="menuServices">Services</a></li>
+                    <li><a href="#about" data-translate="menuAbout">About</a></li>
+                    <li><a href="#team" data-translate="menuTeam">Team</a></li>
+                    <li><a href="#contact" data-translate="menuContact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 style="color: white; margin-bottom: 16px;" data-translate="followUsTitle">Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i data-lucide="facebook" style="width: 20px; height: 20px;"></i>
+                    </a>
+                    <a href="https://www.instagram.com/exetones_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="social-link">
+                        <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i data-lucide="linkedin" style="width: 20px; height: 20px;"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i data-lucide="github" style="width: 20px; height: 20px;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p data-translate="copyright">© 2024 IT Service. All rights reserved. Made with ❤️ in Indonesia</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Particle Animation
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const particles = [];
+        for (let i = 0; i < 50; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                size: Math.random() * 2 + 1,
+                opacity: Math.random() * 0.5 + 0.2
+            });
+        }
+        
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(particle => {
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+                
+                if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+                if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+                
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(59, 130, 246, ${particle.opacity})`;
+                ctx.fill();
+            });
+            
+            // Draw connections
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const distance = Math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2);
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(59, 130, 246, ${0.2 * (1 - distance / 100)})`;
+                        ctx.stroke();
+                    }
+                });
+            });
+            
+            requestAnimationFrame(animateParticles);
+        }
+        
+        animateParticles();
+        
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            // Update active nav link
+            const sections = ['home', 'services', 'about', 'team', 'testimonials', 'contact'];
+            const scrollPosition = window.scrollY + 100;
+            
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element) {
+                    const { offsetTop, offsetHeight } = element;
+                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        document.querySelectorAll(`.nav-link[href="#${section}"]`).forEach(link => {
+                            link.classList.add('active');
+                        });
+                    }
+                }
+            });
+        });
+        
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Testimonials
+        let currentTestimonial = 0;
+        
+        function showTestimonial(index) {
+            currentTestimonial = index;
+            const currentTestimonials = translations[currentLanguage].testimonials;
+            document.getElementById('testimonialText').textContent = `"${currentTestimonials[index].text}"`;
+            document.getElementById('testimonialAuthor').textContent = currentTestimonials[index].author;
+            document.getElementById('testimonialPosition').textContent = currentTestimonials[index].position;
+            
+            // Update dots
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+        
+        // Auto-rotate testimonials
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }, 5000);
+        
+
+        
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-1');
+                    entry.target.classList.remove('opacity-0');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.opacity-0').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Language translations
+        const translations = {
+            en: {
+                // Brand & Menu
+                brandName: "Syarar Tech",
+                menuHome: "Home",
+                menuServices: "Services",
+                menuAbout: "About",
+                menuTeam: "Team",
+                menuContact: "Contact",
+                heroTitle: "Professional Computer & Laptop Service",
+                heroSubtitle: "Fast Solutions, Right Technology With Syarar Tech.",
+                heroSuffix: "Professional",
+                orderNow: "Order Now",
+                contactUs: "Contact Us",
+                servicesTitle: "Our Services",
+                servicesSubtitle: "Complete solutions for all your IT needs",
+                aboutTitle: "About Us",
+                aboutText1: "Syarar Tech is a professional computer and laptop service provider with over 5 years of experience in the IT industry. We are committed to providing the best technology solutions at affordable prices.",
+                aboutText2: "With our certified expert team and modern equipment, we are ready to handle various technology issues from simple to complex. Customer satisfaction is our top priority.",
+                satisfied: "Satisfied Customers",
+                experience: "Years Experience",
+                teamTitle: "Our Team",
+                teamSubtitle: "6 experienced IT experts ready to help you",
+                testimonialsTitle: "Customer Testimonials",
+                testimonialsSubtitle: "What they say about our services",
+                contactTitle: "Contact Us",
+                contactSubtitle: "Ready to help 24/7 for your IT needs",
+                sendMessage: "Send Message",
+                yourName: "Your Name",
+                yourEmail: "Your Email",
+                yourMessage: "Your Message",
+                address: "Address",
+                phone: "Phone",
+                phoneLabel: "Phone",
+                emailLabel: "Email",
+                addressLabel: "Address",
+                chatWhatsApp: "Chat via WhatsApp",
+                quickLinks: "Quick Links",
+                followUs: "Follow Us",
+                footerTagline: "Trusted technology solutions for all your computer and laptop needs.",
+                quickLinksTitle: "Quick Links",
+                followUsTitle: "Follow Us",
+                copyright: "© 2024 Syarar Tech. All rights reserved. Made with ❤️ in Indonesia",
+                // Service Cards
+                installTitle: "Windows/Linux Installation",
+                installDesc: "Windows and Linux operating system installation with complete drivers",
+                windows: "Windows 10/11",
+                linux: "Ubuntu/Linux Mint",
+                driver: "Driver Installation",
+                software: "Software Setup",
+                upgradeTitle: "RAM & SSD Upgrade",
+                upgradeDesc: "Component upgrades for maximum performance and faster booting",
+                ramUpgrade: "RAM Upgrade",
+                ssdInstall: "SSD Installation",
+                perfTuning: "Performance Tuning",
+                compConsult: "Component Consultation",
+                maintenanceTitle: "Hardware Maintenance",
+                maintenanceDesc: "Hardware cleaning and maintenance for longer lifespan",
+                dustClean: "Dust Cleaning",
+                thermal: "Thermal Paste",
+                cable: "Cable Management",
+                hwCheck: "Hardware Check",
+                // Additional elements
+                satisfied: "Satisfied Customers",
+                experience: "Years Experience",
+                messageResponse: "We will respond to your message soon",
+                testimonials: [
+                    {
+                        text: "Excellent service! My dead laptop was revived in just 2 days. Professional and friendly team.",
+                        author: "Andy Wijaya",
+                        position: "Tech Startup CEO"
+                    },
+                    {
+                        text: "RAM and SSD upgrade made my laptop 10x faster. Affordable price with maximum results. Recommended!",
+                        author: "Sarah Putri",
+                        position: "Freelance Designer"
+                    },
+                    {
+                        text: "IT Service team was very helpful in setting up our office network. Fast response and solution oriented. Thank you!",
+                        author: "Budi Hartono",
+                        position: "IT Manager"
+                    },
+                    {
+                        text: "Lost data due to virus was 100% recovered. Very professional and trustworthy service!",
+                        author: "Maya Anggraini",
+                        position: "Content Creator"
+                    }
+                ],
+                // Team members titles and descriptions
+                hardwareSpec: "Hardware Specialist",
+                hardwareSpecDesc: "Hardware repair and computer upgrade specialist with 5+ years of experience",
+                softwareEng: "Software Engineer",
+                softwareEngDesc: "Expert in software troubleshooting and operating system installation",
+                networkEng: "Network Engineer",
+                networkEngDesc: "Network and system configuration expert for offices and homes",
+                dataRecoveryDesc: "Specialist in data recovery and backup system restoration",
+                gamingSpecDesc: "Expert in gaming PC builds and performance optimization",
+                custRelationsDesc: "Customer service coordinator and project manager",
+                // Team Skills
+                networkSetup: "Network Setup",
+                wifiConfig: "WiFi Configuration",
+                securitySys: "Security Systems",
+                cableManage: "Cable Management",
+                dataRecoverySkills: "Data Recovery",
+                backupSol: "Backup Solutions",
+                digitalForensics: "Digital Forensics",
+                raidRecovery: "RAID Recovery",
+                gamingBuild: "Gaming PC Build",
+                overclocking: "Overclocking",
+                perfTuning: "Performance Tuning",
+                rgbSetup: "RGB Setup",
+                custService: "Customer Service",
+                projManagement: "Project Management",
+                communication: "Communication",
+                qualityControl: "Quality Control",
+                dataRecovery: "Data Recovery Expert",
+                gamingSpec: "Gaming PC Builder",
+                gamingSpecDesc: "Expert in gaming PC builds and performance optimization",
+                custRelations: "Customer Relations",
+                custRelationsDesc: "Customer service coordinator and project manager",
+                // Testimonials
+                testimonialText: "Excellent service! My dead laptop was revived in just 2 days. Professional and friendly team.",
+                testimonialAuthor: "Andy Wijaya",
+                testimonialPosition: "Tech Startup CEO",
+                // Skills
+                hardwareRepair: "Hardware Repair",
+                pcBuilding: "PC Building",
+                compDiag: "Component Diagnosis",
+                upgradeSpec: "Upgrade Specialist",
+                osInstall: "OS Installation",
+                softwareTrouble: "Software Troubleshooting",
+                driverManage: "Driver Management",
+                sysOptimize: "System Optimization",
+                // Additional Services
+                repairTitle: "PC/Laptop Repair",
+                repairDesc: "Hardware and software service for various issues",
+                noDisplay: "No Display",
+                overheating: "Overheating",
+                blueScreen: "Blue Screen",
+                hwRepair: "Hardware Repair",
+                optimizeTitle: "Software Optimization",
+                optimizeDesc: "System optimization for best and stable performance",
+                speedOpt: "Speed Optimization",
+                virusRemoval: "Virus Removal",
+                sysClean: "System Cleanup",
+                swUpdates: "Software Updates",
+                backupTitle: "Backup & Recovery",
+                backupDesc: "Important data backup and lost data recovery",
+                dataBackup: "Data Backup",
+                fileRecovery: "File Recovery",
+                cloudSetup: "Cloud Setup",
+                dataMigration: "Data Migration"
+                ,
+                testimonials: [
+                    {
+                        text: "Service was excellent! My laptop that was completely dead was revived in 2 days. Professional and friendly team.",
+                        author: "Andi Wijaya",
+                        position: "CEO Tech Startup"
+                    },
+                    {
+                        text: "RAM and SSD upgrade made my laptop 10x faster. Affordable and excellent results. Recommended!",
+                        author: "Sarah Putri",
+                        position: "Freelance Designer"
+                    },
+                    {
+                        text: "The IT Service team helped set up our office network. Fast response and solution-oriented. Thank you!",
+                        author: "Budi Hartono",
+                        position: "IT Manager"
+                    },
+                    {
+                        text: "Lost data due to a virus was 100% recovered. Very professional and trustworthy service!",
+                        author: "Maya Anggraini",
+                        position: "Content Creator"
+                    }
+                ]
+            },
+            id: {
+                // Brand & Menu
+                brandName: "Syarar Tech",
+                menuHome: "Beranda",
+                menuServices: "Layanan",
+                menuAbout: "Tentang",
+                menuTeam: "Tim",
+                menuContact: "Kontak",
+                heroTitle: "Jasa Service Komputer & Laptop Profesional",
+                heroSubtitle: "Solusi Cepat, Teknologi Tepat Bersama Syarar Tech.",
+                orderNow: "Pesan Sekarang",
+                contactUs: "Hubungi Kami",
+                servicesTitle: "Layanan Kami",
+                servicesSubtitle: "Solusi lengkap untuk semua kebutuhan IT Anda",
+                aboutTitle: "Tentang Kami",
+                aboutText1: "Syarar Tech adalah penyedia layanan komputer dan laptop profesional yang telah berpengalaman lebih dari 5 tahun dalam industri IT. Kami berkomitmen untuk memberikan solusi teknologi terbaik dengan harga terjangkau.",
+                aboutText2: "Dengan tim ahli yang bersertifikat dan peralatan modern, kami siap menangani berbagai masalah teknologi dari yang sederhana hingga kompleks. Kepuasan pelanggan adalah prioritas utama kami.",
+                teamTitle: "Tim Kami",
+                teamSubtitle: "6 ahli IT berpengalaman siap membantu Anda",
+                testimonialsTitle: "Testimoni Pelanggan",
+                testimonialsSubtitle: "Apa kata mereka tentang layanan kami",
+                contactTitle: "Hubungi Kami",
+                contactSubtitle: "Siap membantu 24/7 untuk kebutuhan IT Anda",
+                sendMessage: "Kirim Pesan",
+                yourName: "Nama Anda",
+                yourEmail: "Email Anda",
+                yourMessage: "Pesan Anda",
+                address: "Alamat",
+                phone: "Telepon",
+                phoneLabel: "Telepon",
+                emailLabel: "Email",
+                addressLabel: "Alamat",
+                chatWhatsApp: "Chat via WhatsApp",
+                quickLinks: "Quick Links",
+                followUs: "Ikuti Kami",
+                footerTagline: "Solusi teknologi terpercaya untuk semua kebutuhan komputer dan laptop Anda.",
+                quickLinksTitle: "Link Cepat",
+                followUsTitle: "Ikuti Kami",
+                copyright: "© 2024 Syarar Tech. Hak Cipta Dilindungi. Dibuat dengan ❤️ di Indonesia",
+                // Service Cards
+                installTitle: "Install Ulang Windows/Linux",
+                installDesc: "Install ulang sistem operasi Windows dan Linux dengan driver lengkap",
+                windows: "Windows 10/11",
+                linux: "Ubuntu/Linux Mint",
+                driver: "Instalasi Driver",
+                software: "Setup Software",
+                upgradeTitle: "Upgrade RAM & SSD",
+                upgradeDesc: "Upgrade komponen untuk performa maksimal dan booting lebih cepat",
+                ramUpgrade: "Upgrade RAM",
+                ssdInstall: "Instalasi SSD",
+                perfTuning: "Optimasi Performa",
+                compConsult: "Konsultasi Komponen",
+                maintenanceTitle: "Perawatan Hardware",
+                maintenanceDesc: "Cleaning dan maintenance hardware untuk umur panjang",
+                dustClean: "Pembersihan Debu",
+                thermal: "Pasta Thermal",
+                cable: "Manajemen Kabel",
+                hwCheck: "Cek Hardware",
+                // Additional elements
+                satisfied: "Pelanggan Puas",
+                experience: "Tahun Pengalaman",
+                messageResponse: "Kami akan segera merespon pesan Anda",
+                testimonials: [
+                    {
+                        text: "Service sangat memuaskan! Laptop saya yang mati total bisa hidup lagi dalam 2 hari. Tim profesional dan ramah.",
+                        author: "Andi Wijaya",
+                        position: "CEO Tech Startup"
+                    },
+                    {
+                        text: "Upgrade RAM dan SSD membuat laptop saya 10x lebih cepat. Harga terjangkau dan hasil maksimal. Recommended!",
+                        author: "Sarah Putri",
+                        position: "Freelance Designer"
+                    },
+                    {
+                        text: "Tim IT Service sangat membantu setup jaringan kantor kami. Fast response dan solving oriented. Terima kasih!",
+                        author: "Budi Hartono",
+                        position: "IT Manager"
+                    },
+                    {
+                        text: "Data recovery yang hilang akibat virus berhasil dipulihkan 100%. Very professional and trustworthy service!",
+                        author: "Maya Anggraini",
+                        position: "Content Creator"
+                    }
+                ],
+                // Team members titles and descriptions
+                hardwareSpec: "Spesialis Hardware",
+                hardwareSpecDesc: "Spesialis perbaikan hardware dan upgrade komputer dengan pengalaman 5+ tahun",
+                softwareEng: "Software Engineer",
+                softwareEngDesc: "Expert dalam troubleshooting software dan instalasi sistem operasi",
+                networkEng: "Network Engineer",
+                networkEngDesc: "Ahli jaringan dan konfigurasi sistem untuk kantor dan rumah",
+                dataRecoveryDesc: "Spesialis pemulihan data dan sistem backup",
+                gamingSpecDesc: "Ahli dalam pembuatan PC gaming dan optimasi performa",
+                custRelationsDesc: "Koordinator layanan pelanggan dan manajer proyek",
+                // Team Skills
+                networkSetup: "Setup Jaringan",
+                wifiConfig: "Konfigurasi WiFi",
+                securitySys: "Sistem Keamanan",
+                cableManage: "Manajemen Kabel",
+                dataRecoverySkills: "Pemulihan Data",
+                backupSol: "Solusi Backup",
+                digitalForensics: "Forensik Digital",
+                raidRecovery: "Pemulihan RAID",
+                gamingBuild: "Rakit PC Gaming",
+                overclocking: "Overclocking",
+                perfTuning: "Optimasi Performa",
+                rgbSetup: "Setup RGB",
+                custService: "Layanan Pelanggan",
+                projManagement: "Manajemen Proyek",
+                communication: "Komunikasi",
+                qualityControl: "Kontrol Kualitas",
+                dataRecovery: "Ahli Data Recovery",
+                dataRecoveryDesc: "Spesialis pemulihan data dan backup system yang hilang",
+                gamingSpec: "Spesialis PC Gaming",
+                gamingSpecDesc: "Expert dalam build PC gaming dan optimasi performa",
+                custRelations: "Customer Relations",
+                custRelationsDesc: "Koordinator layanan pelanggan dan project manager",
+                // Testimonials
+                testimonialText: "Service sangat memuaskan! Laptop saya yang mati total bisa hidup lagi dalam 2 hari. Tim profesional dan ramah.",
+                testimonialAuthor: "Andi Wijaya",
+                testimonialPosition: "CEO Tech Startup",
+                // Skills
+                hardwareRepair: "Perbaikan Hardware",
+                pcBuilding: "Rakit PC",
+                compDiag: "Diagnosis Komponen",
+                upgradeSpec: "Spesialis Upgrade",
+                osInstall: "Instalasi OS",
+                softwareTrouble: "Troubleshooting Software",
+                driverManage: "Manajemen Driver",
+                sysOptimize: "Optimasi Sistem",
+                // Additional Services
+                repairTitle: "Perbaikan Laptop/PC",
+                repairDesc: "Service hardware dan software untuk berbagai masalah",
+                noDisplay: "Layar Mati",
+                overheating: "Panas Berlebih",
+                blueScreen: "Layar Biru",
+                hwRepair: "Perbaikan Hardware",
+                optimizeTitle: "Optimasi Software",
+                optimizeDesc: "Optimasi sistem untuk performa terbaik dan stabil",
+                speedOpt: "Optimasi Kecepatan",
+                virusRemoval: "Pembersihan Virus",
+                sysClean: "Pembersihan Sistem",
+                swUpdates: "Update Software",
+                backupTitle: "Backup & Recovery",
+                backupDesc: "Backup data penting dan recovery data yang hilang",
+                dataBackup: "Backup Data",
+                fileRecovery: "Recovery File",
+                cloudSetup: "Setup Cloud",
+                dataMigration: "Migrasi Data"
+                ,
+                testimonials: [
+                    {
+                        text: "Service sangat memuaskan! Laptop saya yang mati total bisa hidup lagi dalam 2 hari. Tim profesional dan ramah.",
+                        author: "Andi Wijaya",
+                        position: "CEO Tech Startup"
+                    },
+                    {
+                        text: "Upgrade RAM dan SSD membuat laptop saya 10x lebih cepat. Harga terjangkau dan hasil maksimal. Recommended!",
+                        author: "Sarah Putri",
+                        position: "Freelance Designer"
+                    },
+                    {
+                        text: "Tim IT Service sangat membantu setup jaringan kantor kami. Fast response dan solving oriented. Terima kasih!",
+                        author: "Budi Hartono",
+                        position: "IT Manager"
+                    },
+                    {
+                        text: "Data recovery yang hilang akibat virus berhasil dipulihkan 100%. Very professional and trustworthy service!",
+                        author: "Maya Anggraini",
+                        position: "Content Creator"
+                    }
+                ]
+            }
+        };
+
+        function changeLanguage(lang) {
+            // Update all elements with data-translate attribute
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        if (element.innerHTML.includes('<br>')) {
+                            // Handle elements with line breaks
+                            element.innerHTML = translations[lang][key];
+                        } else {
+                            element.textContent = translations[lang][key];
+                        }
+                    }
+                }
+            });
+
+            // Trigger translation immediately
+            document.documentElement.setAttribute('lang', lang);
+            
+            // Force a DOM refresh
+            document.body.style.display = 'none';
+            document.body.offsetHeight; // Trigger a reflow
+            document.body.style.display = '';
+            
+            // Update navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const key = link.getAttribute('href').substring(1);
+                if (translations[lang][key]) {
+                    link.textContent = translations[lang][key];
+                }
+            });
+
+            // Update testimonials array if translations provided
+            if (translations[lang] && translations[lang].testimonials) {
+                testimonials = translations[lang].testimonials;
+                currentTestimonial = 0;
+                showTestimonial(0);
+            }
+
+            // Save language preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Load preferred language on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLanguage');
+            const langSelect = document.getElementById('languageSelect');
+            if (savedLang) {
+                langSelect.value = savedLang;
+            }
+            changeLanguage(langSelect.value);
+            
+            // Add event listener for language changes
+            langSelect.addEventListener('change', (e) => {
+                changeLanguage(e.target.value);
+                localStorage.setItem('preferredLanguage', e.target.value);
+            });
+        });
+    </script>
+
+
+</body>
+</html>
