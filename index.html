@@ -1,56 +1,46 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id" data-lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syarar Tech - Jasa Service Komputer & Laptop Profesional</title>
-    
     <!-- Font Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
         body {
             font-family: 'Inter', sans-serif;
             background: #000;
             color: #fff;
             overflow-x: hidden;
         }
-        
         /* Animations */
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
         }
-        
         @keyframes pulse-glow {
             0%, 100% { box-shadow: 0 0 20px rgba(28, 78, 128, 0.3); }
             50% { box-shadow: 0 0 50px rgba(28, 78, 128, 0.5); }
         }
-        
         @keyframes slide-in-up {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
         @keyframes gradient-shift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        
         .animate-float { animation: float 6s ease-in-out infinite; }
         .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
         .animate-slide-in-up { animation: slide-in-up 0.8s ease-out forwards; }
-        
         .gradient-text {
             background: linear-gradient(135deg, #3b82f6, #06b6d4, #8b5cf6);
             background-size: 200% 200%;
@@ -59,27 +49,22 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
         .glass-effect {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
         .hover-lift {
             transition: all 0.3s ease;
         }
-        
         .hover-lift:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
         }
-        
         .neon-border {
             border: 2px solid #3b82f6;
             box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
         }
-        
         /* Canvas Background */
         #particleCanvas {
             position: fixed;
@@ -90,7 +75,6 @@
             z-index: 0;
             pointer-events: none;
         }
-        
         /* Navigation */
         nav {
             position: fixed;
@@ -100,13 +84,11 @@
             z-index: 1000;
             transition: all 0.3s ease;
         }
-        
         nav.scrolled {
             background: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(59, 130, 246, 0.2);
         }
-        
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -116,20 +98,17 @@
             align-items: center;
             height: 64px;
         }
-        
         .nav-menu-container {
             flex: 1;
             display: flex;
             justify-content: center;
         }
-        
         .logo {
             display: flex;
             align-items: center;
             gap: 8px;
             text-decoration: none;
         }
-        
         .logo-icon {
             width: 32px;
             height: 32px;
@@ -140,29 +119,24 @@
             justify-content: center;
             overflow: hidden;
         }
-        
         .logo-text {
             font-size: 20px;
             font-weight: bold;
         }
-        
         .nav-menu {
             display: flex;
             gap: 32px;
             list-style: none;
         }
-        
         .nav-link {
             color: #d1d5db;
             text-decoration: none;
             transition: color 0.3s ease;
         }
-        
         .nav-link:hover, .nav-link.active {
             color: #3b82f6;
             font-weight: 600;
         }
-        
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -170,13 +144,11 @@
             color: white;
             cursor: pointer;
         }
-
         .nav-right {
             display: flex;
             align-items: center;
             gap: 16px;
         }
-        
         .language-select {
             background: rgba(255, 255, 255, 0.1);
             color: white;
@@ -187,38 +159,31 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
         .language-select:hover {
             background: rgba(255, 255, 255, 0.2);
         }
-
         .language-select option {
             background: #1a1a1a;
             color: white;
         }
-        
         /* Sections */
         section {
             position: relative;
             z-index: 1;
             padding: 80px 20px;
         }
-        
         .container {
             max-width: 1200px;
             margin: 0 auto;
         }
-        
         .text-center {
             text-align: center;
         }
-        
         .mb-4 { margin-bottom: 16px; }
         .mb-6 { margin-bottom: 24px; }
         .mb-8 { margin-bottom: 32px; }
         .mb-12 { margin-bottom: 48px; }
         .mb-16 { margin-bottom: 64px; }
-        
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -226,7 +191,6 @@
             align-items: center;
             justify-content: center;
         }
-        
         .hero::before {
             content: '';
             position: absolute;
@@ -236,35 +200,30 @@
             bottom: 0;
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(0, 0, 0, 0.8), rgba(139, 92, 246, 0.1));
         }
-        
         .hero-content {
             position: relative;
             z-index: 2;
             text-align: center;
             max-width: 900px;
         }
-        
         .hero h1 {
             font-size: clamp(36px, 8vw, 72px);
             font-weight: bold;
             margin-bottom: 24px;
             line-height: 1.1;
         }
-        
         .hero p {
             font-size: clamp(18px, 3vw, 24px);
             color: #d1d5db;
             margin-bottom: 32px;
             line-height: 1.6;
         }
-        
         .btn-group {
             display: flex;
             gap: 16px;
             justify-content: center;
             flex-wrap: wrap;
         }
-        
         .btn {
             padding: 16px 32px;
             border-radius: 8px;
@@ -278,28 +237,23 @@
             cursor: pointer;
             font-size: 16px;
         }
-        
         .btn-primary {
             background: #3b82f6;
             color: white;
         }
-        
         .btn-primary:hover {
             background: #2563eb;
             transform: translateY(-2px);
         }
-        
         .btn-secondary {
             background: transparent;
             color: #3b82f6;
             border: 2px solid #3b82f6;
         }
-        
         .btn-secondary:hover {
             background: rgba(59, 130, 246, 0.1);
             transform: translateY(-2px);
         }
-        
         /* Cards */
         .card {
             background: rgba(255, 255, 255, 0.05);
@@ -309,12 +263,10 @@
             padding: 24px;
             transition: all 0.3s ease;
         }
-        
         .card:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
         }
-        
         .card-icon {
             width: 64px;
             height: 64px;
@@ -326,22 +278,18 @@
             margin-bottom: 16px;
             animation: pulse-glow 2s ease-in-out infinite;
         }
-        
         .card h3 {
             font-size: 20px;
             font-weight: bold;
             margin-bottom: 8px;
         }
-        
         .card p {
             color: #9ca3af;
             margin-bottom: 16px;
         }
-        
         .card-list {
             list-style: none;
         }
-        
         .card-list li {
             color: #d1d5db;
             font-size: 14px;
@@ -349,7 +297,6 @@
             display: flex;
             align-items: center;
         }
-        
         .card-list li::before {
             content: '';
             width: 8px;
@@ -358,26 +305,21 @@
             border-radius: 50%;
             margin-right: 8px;
         }
-        
         /* Grid */
         .grid {
             display: grid;
             gap: 32px;
         }
-        
         .grid-3 {
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         }
-        
         .grid-2 {
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
         }
-        
         /* Team Section */
         .team-card {
             text-align: center;
         }
-        
         .team-avatar {
             width: 96px;
             height: 96px;
@@ -391,14 +333,12 @@
             box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
             overflow: hidden;
         }
-
         .team-avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
         }
-        
         .badge {
             display: inline-block;
             padding: 4px 12px;
@@ -407,18 +347,15 @@
             font-weight: 600;
             margin-bottom: 8px;
         }
-        
         .badge-primary {
             background: linear-gradient(135deg, #3b82f6, #8b5cf6);
             color: white;
         }
-        
         .badge-secondary {
             background: rgba(59, 130, 246, 0.2);
             color: #3b82f6;
             border: 1px solid rgba(59, 130, 246, 0.5);
         }
-        
         .skills {
             display: flex;
             flex-wrap: wrap;
@@ -427,7 +364,6 @@
             justify-content: center;
             align-items: center;
         }
-        
         .skill-badge {
             background: rgba(255, 255, 255, 0.1);
             color: #d1d5db;
@@ -437,42 +373,35 @@
             margin: 4px;
             white-space: nowrap;
         }
-        
         /* Testimonials */
         .testimonial-card {
             max-width: 600px;
             margin: 0 auto;
         }
-        
         .stars {
             color: #fbbf24;
             margin-bottom: 16px;
         }
-        
         .testimonial-text {
             font-size: 18px;
             font-style: italic;
             color: #d1d5db;
             margin-bottom: 16px;
         }
-        
         .testimonial-author {
             font-weight: bold;
             color: white;
         }
-        
         .testimonial-position {
             color: #9ca3af;
             font-size: 14px;
         }
-        
         .testimonial-nav {
             display: flex;
             justify-content: center;
             gap: 8px;
             margin-top: 24px;
         }
-        
         .dot {
             width: 8px;
             height: 8px;
@@ -481,25 +410,21 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
         .dot.active {
             background: #3b82f6;
             width: 32px;
             border-radius: 4px;
         }
-        
         /* Contact Form */
         .form-group {
             margin-bottom: 20px;
         }
-        
         .form-label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
             color: #d1d5db;
         }
-        
         .form-input, .form-textarea {
             width: 100%;
             padding: 12px;
@@ -509,23 +434,19 @@
             color: white;
             font-family: inherit;
         }
-        
         .form-input::placeholder, .form-textarea::placeholder {
             color: #6b7280;
         }
-        
         .form-textarea {
             min-height: 120px;
             resize: vertical;
         }
-        
         .contact-info {
             display: flex;
             align-items: center;
             gap: 16px;
             margin-bottom: 20px;
         }
-        
         .contact-icon {
             width: 48px;
             height: 48px;
@@ -535,14 +456,12 @@
             align-items: center;
             justify-content: center;
         }
-        
         /* Footer */
         footer {
             background: linear-gradient(180deg, transparent, rgba(59, 130, 246, 0.1));
             border-top: 1px solid rgba(59, 130, 246, 0.2);
             padding: 48px 20px 24px;
         }
-        
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
@@ -551,35 +470,28 @@
             gap: 32px;
             margin-bottom: 32px;
         }
-        
         .footer-section h3 {
             margin-bottom: 16px;
             color: white;
         }
-        
         .footer-links {
             list-style: none;
         }
-        
         .footer-links li {
             margin-bottom: 8px;
         }
-        
         .footer-links a {
             color: #9ca3af;
             text-decoration: none;
             transition: color 0.3s ease;
         }
-        
         .footer-links a:hover {
             color: #3b82f6;
         }
-        
         .social-links {
             display: flex;
             gap: 12px;
         }
-        
         .social-link {
             width: 40px;
             height: 40px;
@@ -592,18 +504,15 @@
             text-decoration: none;
             transition: all 0.3s ease;
         }
-        
         .social-link:hover {
             background: rgba(59, 130, 246, 0.3);
         }
-        
         .footer-bottom {
             text-align: center;
             padding-top: 24px;
             border-top: 1px solid rgba(59, 130, 246, 0.2);
             color: #6b7280;
         }
-        
         /* Floating Elements */
         .floating-element {
             position: absolute;
@@ -611,14 +520,12 @@
             background: rgba(59, 130, 246, 0.2);
             animation: float 6s ease-in-out infinite;
         }
-        
         .floating-1 {
             top: 80px;
             left: 40px;
             width: 80px;
             height: 80px;
         }
-        
         .floating-2 {
             bottom: 80px;
             right: 40px;
@@ -626,7 +533,6 @@
             height: 128px;
             animation-delay: 2s;
         }
-        
         .floating-3 {
             top: 50%;
             left: 25%;
@@ -634,17 +540,14 @@
             height: 64px;
             animation-delay: 4s;
         }
-        
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
             }
-            
             .mobile-menu-btn {
                 display: block;
             }
-            
             .mobile-menu {
                 position: absolute;
                 top: 100%;
@@ -656,12 +559,10 @@
                 margin-top: 8px;
                 padding: 16px;
             }
-            
             .mobile-menu li {
                 list-style: none;
                 margin-bottom: 8px;
             }
-            
             .mobile-menu a {
                 color: #d1d5db;
                 text-decoration: none;
@@ -670,34 +571,28 @@
                 border-radius: 4px;
                 transition: all 0.3s ease;
             }
-            
             .mobile-menu a:hover, .mobile-menu a.active {
                 background: rgba(59, 130, 246, 0.2);
                 color: #3b82f6;
             }
-            
             .btn-group {
                 flex-direction: column;
                 align-items: center;
             }
-            
             .grid-2 {
                 grid-template-columns: 1fr;
             }
         }
-        
         /* Hidden class */
         .hidden {
             display: none !important;
         }
-        
         /* Opacity animation */
         .opacity-0 {
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s ease;
         }
-        
         .opacity-1 {
             opacity: 1;
             transform: translateY(0);
@@ -707,7 +602,6 @@
 <body>
     <!-- Particle Canvas Background -->
     <canvas id="particleCanvas"></canvas>
-    
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
@@ -717,7 +611,6 @@
                 </div>
                 <span class="logo-text gradient-text" data-translate="brandName">Syarar Tech</span>
             </a>
-            
             <div class="nav-menu-container">
                 <ul class="nav-menu">
                     <li><a href="#home" class="nav-link" data-translate="menuHome">Home</a></li>
@@ -727,7 +620,6 @@
                     <li><a href="#contact" class="nav-link" data-translate="menuContact">Contact</a></li>
                 </ul>
             </div>
-            
             <div class="nav-right">
                 <select id="languageSelect" class="language-select" onchange="changeLanguage(this.value)">
                     <option value="id">🇮🇩 ID</option>
@@ -737,7 +629,6 @@
                     <i data-lucide="menu" style="width: 24px; height: 24px;"></i>
                 </button>
             </div>
-            
             <div class="mobile-menu hidden" id="mobileMenu">
                 <li><a href="#home" class="nav-link" data-translate="menuHome">Home</a></li>
                 <li><a href="#services" class="nav-link" data-translate="menuServices">Services</a></li>
@@ -747,13 +638,11 @@
             </div>
         </div>
     </nav>
-    
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="floating-element floating-1"></div>
         <div class="floating-element floating-2"></div>
         <div class="floating-element floating-3"></div>
-        
         <div class="hero-content animate-slide-in-up">
             <h1>
                 <span class="gradient-text" data-translate="heroTitle">Jasa Service Komputer & Laptop</span><br>
@@ -775,7 +664,6 @@
             </div>
         </div>
     </section>
-    
     <!-- Services Section -->
     <section id="services">
         <div class="container">
@@ -783,7 +671,6 @@
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text" data-translate="servicesTitle">Layanan Kami</h2>
                 <p class="text-xl text-gray-400" data-translate="servicesSubtitle">Solusi lengkap untuk semua kebutuhan IT Anda</p>
             </div>
-            
             <div class="grid grid-3">
                 <div class="card opacity-0">
                     <div class="card-icon">
@@ -798,7 +685,6 @@
                         <li data-translate="software">Software Setup</li>
                     </ul>
                 </div>
-                
                 <div class="card opacity-0">
                     <div class="card-icon">
                         <i data-lucide="cpu" style="width: 32px; height: 32px; color: #3b82f6;"></i>
@@ -812,7 +698,6 @@
                         <li data-translate="compConsult">Component Consultation</li>
                     </ul>
                 </div>
-                
                 <div class="card opacity-0">
                     <div class="card-icon">
                         <i data-lucide="hard-drive" style="width: 32px; height: 32px; color: #3b82f6;"></i>
@@ -826,7 +711,6 @@
                         <li data-translate="hwCheck">Hardware Check</li>
                     </ul>
                 </div>
-                
                 <div class="card opacity-0">
                     <div class="card-icon">
                         <i data-lucide="shield" style="width: 32px; height: 32px; color: #3b82f6;"></i>
@@ -840,7 +724,6 @@
                         <li data-translate="hwRepair">Hardware Repair</li>
                     </ul>
                 </div>
-                
                 <div class="card opacity-0">
                     <div class="card-icon">
                         <i data-lucide="zap" style="width: 32px; height: 32px; color: #3b82f6;"></i>
@@ -854,7 +737,6 @@
                         <li data-translate="swUpdates">Software Updates</li>
                     </ul>
                 </div>
-                
                 <div class="card opacity-0">
                     <div class="card-icon">
                         <i data-lucide="wifi" style="width: 32px; height: 32px; color: #3b82f6;"></i>
@@ -871,7 +753,6 @@
             </div>
         </div>
     </section>
-    
     <!-- About Section -->
     <section id="about" style="background: linear-gradient(180deg, #000, rgba(59, 130, 246, 0.1));">
         <div class="container">
@@ -899,7 +780,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="opacity-0">
                     <div style="position: relative;">
                         <div style="width: 400px; height: 400px; margin: 0 auto; background: linear-gradient(135deg, rgba(13, 38, 76, 0.2), rgba(28, 78, 128, 0.2)); border-radius: 16px; display: flex; align-items: center; justify-content: center; animation: pulse-glow 2s ease-in-out infinite; overflow: hidden; box-shadow: 0 0 40px rgba(28, 78, 128, 0.3);">
@@ -912,7 +792,6 @@
             </div>
         </div>
     </section>
-    
     <!-- Team Section -->
     <section id="team">
         <div class="container">
@@ -920,7 +799,6 @@
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text" data-translate="teamTitle">Tim Kami</h2>
                 <p class="text-xl text-gray-400" data-translate="teamSubtitle">6 ahli IT berpengalaman siap membantu Anda</p>
             </div>
-            
             <div class="grid grid-3">
                 <div class="card team-card opacity-0" style="text-align: center;">
                     <div class="team-avatar" style="width: 100%; height: 300px; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
@@ -935,11 +813,10 @@
                         <a href="https://www.instagram.com/freakingrend" target="_blank" style="color: #3B82F6; text-decoration: none;">
                             <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
                         </a>
-                        <a href="mailto:apik@syarartech.com" style="color: #3B82F6; text-decoration: none;">
-                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        <a href="https://wa.me/62895360865736?text=Halo%20Apik%20Rendi%20Firmansyah,%20saya%20ingin%20berkonsultasi%20tentang%20service%20komputer/laptop." target="_blank" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
                         </a>
                     </div>
-                    <!-- Removed duplicate description -->
                     <div class="skills">
                         <span class="skill-badge" data-translate="hardwareRepair">Hardware Repair</span>
                         <span class="skill-badge" data-translate="pcBuilding">PC Building</span>
@@ -947,7 +824,6 @@
                         <span class="skill-badge" data-translate="upgradeSpec">Upgrade Specialist</span>
                     </div>
                 </div>
-
                 <div class="card team-card opacity-0">
                     <div class="team-avatar" style="width: 100%; height: 300px; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
                         <img src="https://i.ibb.co.com/1GR22R7S/Mochammad.jpg" alt="Mochammad Rizqi Dirgantoro" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
@@ -961,11 +837,10 @@
                         <a href="https://www.instagram.com/rizzdirga" target="_blank" style="color: #3B82F6; text-decoration: none;">
                             <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
                         </a>
-                        <a href="mailto:rizqi@syarartech.com" style="color: #3B82F6; text-decoration: none;">
-                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        <a href="https://wa.me/6285848155578?text=Halo%20Mochammad%20Rizqi%20Dirgantoro,%20saya%20ingin%20berkonsultasi%20tentang%20service%20komputer/laptop." target="_blank" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
                         </a>
                     </div>
-                    <!-- Removed duplicate description -->
                     <div class="skills">
                         <span class="skill-badge" data-translate="osInstall">OS Installation</span>
                         <span class="skill-badge" data-translate="softwareTrouble">Software Troubleshooting</span>
@@ -973,7 +848,6 @@
                         <span class="skill-badge" data-translate="sysOptimize">System Optimization</span>
                     </div>
                 </div>
-
                 <div class="card team-card opacity-0">
                     <div class="team-avatar" style="width: 100%; height: 300px; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
                         <img src="https://i.ibb.co.com/Y45wNm0y/Muhammad.jpg" alt="Muhammad Rio Al Awal" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
@@ -987,8 +861,8 @@
                         <a href="https://www.instagram.com/viii_allll" target="_blank" style="color: #3B82F6; text-decoration: none;">
                             <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
                         </a>
-                        <a href="mailto:rio@syarartech.com" style="color: #3B82F6; text-decoration: none;">
-                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        <a href="https://wa.me/6283866186480?text=Halo%20Muhammad%20Rio%20Al%20Awal,%20saya%20ingin%20berkonsultasi%20tentang%20service%20komputer/laptop." target="_blank" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
                         </a>
                     </div>
                     <div class="skills">
@@ -998,7 +872,6 @@
                         <span class="skill-badge" data-translate="cableManage">Cable Management</span>
                     </div>
                 </div>
-
                 <div class="card team-card opacity-0">
                     <div class="team-avatar" style="width: 100%; height: 300px; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
                         <img src="https://i.ibb.co.com/0RTqzC9h/Yaqut.jpg" alt="Yaqut Mubarok Nailur Raja" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
@@ -1012,11 +885,10 @@
                         <a href="https://www.instagram.com/nailur.rajaa" target="_blank" style="color: #3B82F6; text-decoration: none;">
                             <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
                         </a>
-                        <a href="mailto:yaqut@syarartech.com" style="color: #3B82F6; text-decoration: none;">
-                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        <a href="https://wa.me/6285183749613?text=Halo%20Yaqut%20Mubarok%20Nailur%20Raja,%20saya%20ingin%20berkonsultasi%20tentang%20service%20komputer/laptop." target="_blank" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
                         </a>
                     </div>
-                    <!-- Removed duplicate description -->
                     <div class="skills">
                         <span class="skill-badge" data-translate="dataRecoverySkills">Data Recovery</span>
                         <span class="skill-badge" data-translate="backupSol">Backup Solutions</span>
@@ -1024,7 +896,6 @@
                         <span class="skill-badge" data-translate="raidRecovery">RAID Recovery</span>
                     </div>
                 </div>
-
                 <div class="card team-card opacity-0">
                     <div class="team-avatar" style="width: 100%; height: 300px; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
                         <img src="https://i.ibb.co.com/QvJsv2GN/Bagus.jpg" alt="Bagus Zandra Ihsani" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
@@ -1037,11 +908,10 @@
                         <a href="https://www.instagram.com/zandraisani" target="_blank" style="color: #3B82F6; text-decoration: none;">
                             <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
                         </a>
-                        <a href="mailto:bagus@syarartech.com" style="color: #3B82F6; text-decoration: none;">
-                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        <a href="https://wa.me/6285150702750?text=Halo%20Bagus%20Zandra%20Ihsani,%20saya%20ingin%20berkonsultasi%20tentang%20service%20komputer/laptop." target="_blank" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
                         </a>
                     </div>
-                    <!-- Removed duplicate description -->
                     <div class="skills">
                         <span class="skill-badge" data-translate="gamingBuild">Gaming PC Build</span>
                         <span class="skill-badge" data-translate="overclocking">Overclocking</span>
@@ -1049,7 +919,6 @@
                         <span class="skill-badge" data-translate="rgbSetup">RGB Setup</span>
                     </div>
                 </div>
-
                 <div class="card team-card opacity-0">
                     <div class="team-avatar" style="width: 100%; height: 300px; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
                         <img src="https://i.ibb.co.com/WSfgHxf/Reski.jpg" alt="Reski Angga Pratama" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
@@ -1062,12 +931,10 @@
                         <a href="https://www.instagram.com/reskianggaa" target="_blank" style="color: #3B82F6; text-decoration: none;">
                             <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
                         </a>
-                        <a href="mailto:reski@syarartech.com" style="color: #3B82F6; text-decoration: none;">
-                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        <a href="https://wa.me/6285647856811?text=Halo%20Reski%20Angga%20Pratama,%20saya%20ingin%20berkonsultasi%20tentang%20service%20komputer/laptop." target="_blank" style="color: #3B82F6; text-decoration: none;">
+                            <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
                         </a>
                     </div>
-                    <!-- Removed duplicate description -->
-                    </p>
                     <div class="skills">
                         <span class="skill-badge" data-translate="custService">Customer Service</span>
                         <span class="skill-badge" data-translate="projManagement">Project Management</span>
@@ -1078,7 +945,6 @@
             </div>
         </div>
     </section>
-    
     <!-- Testimonials Section -->
     <section id="testimonials" style="background: linear-gradient(180deg, #000, rgba(59, 130, 246, 0.1));">
         <div class="container">
@@ -1086,7 +952,6 @@
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text" data-translate="testimonialsTitle">Testimoni Pelanggan</h2>
                 <p class="text-xl text-gray-400" data-translate="testimonialsSubtitle">Apa kata mereka tentang layanan kami</p>
             </div>
-            
             <div class="testimonial-card card opacity-0">
                 <div class="stars" id="stars">
                     <i data-lucide="star" style="width: 20px; height: 20px; fill: currentColor;"></i>
@@ -1101,7 +966,6 @@
                 <div class="testimonial-author" id="testimonialAuthor" data-translate="testimonialAuthor">Andi Wijaya</div>
                 <div class="testimonial-position" id="testimonialPosition" data-translate="testimonialPosition">CEO Tech Startup</div>
             </div>
-            
             <div class="testimonial-nav">
                 <div class="dot active" onclick="showTestimonial(0)"></div>
                 <div class="dot" onclick="showTestimonial(1)"></div>
@@ -1110,7 +974,6 @@
             </div>
         </div>
     </section>
-    
     <!-- Contact Section -->
     <section id="contact">
         <div class="container">
@@ -1118,7 +981,6 @@
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text" data-translate="contactTitle">Hubungi Kami</h2>
                 <p class="text-xl text-gray-400" data-translate="contactSubtitle">Siap membantu 24/7 untuk kebutuhan IT Anda</p>
             </div>
-            
             <div class="grid grid-2">
                 <div class="opacity-0">
                     <div class="card">
@@ -1139,7 +1001,6 @@
                         </form>
                     </div>
                 </div>
-                
                 <div class="opacity-0">
                     <div class="contact-info card">
                         <div class="contact-icon">
@@ -1150,7 +1011,6 @@
                             <div style="color: #9ca3af;">0858-4815-5578</div>
                         </div>
                     </div>
-                    
                     <div class="contact-info card">
                         <div class="contact-icon">
                             <i data-lucide="mail" style="width: 24px; height: 24px; color: #3b82f6;"></i>
@@ -1160,7 +1020,6 @@
                             <div style="color: #9ca3af;">syarartech@gmail.com</div>
                         </div>
                     </div>
-                    
                     <div class="contact-info card">
                         <div class="contact-icon">
                             <i data-lucide="map-pin" style="width: 24px; height: 24px; color: #3b82f6;"></i>
@@ -1170,13 +1029,11 @@
                             <div style="color: #9ca3af;">SMKN 1 Purwokerto, TJKT</div>
                         </div>
                     </div>
-                    
                     <a href="https://wa.me/6285848155578?text=Halo%20IT%20Service,%20saya%20ingin%20berkonsultasi%20tentang%20service%20komputer/laptop." 
                        target="_blank" class="btn btn-primary" style="width: 100%; background: #10b981;">
                         <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
                         <span data-translate="chatWhatsApp">Chat via WhatsApp</span>
                     </a>
-                    
                     <div style="width: 100%; height: 256px; border-radius: 16px; overflow: hidden; margin-top: 16px;">
                         <iframe src="https://www.google.com/maps?q=SMKN+1+Purwokerto&output=embed" width="100%" height="256" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
@@ -1184,7 +1041,6 @@
             </div>
         </div>
     </section>
-    
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -1199,7 +1055,6 @@
                     Solusi teknologi terpercaya untuk semua kebutuhan komputer dan laptop Anda.
                 </p>
             </div>
-            
             <div>
                 <h3 style="color: white; margin-bottom: 16px;" data-translate="quickLinksTitle">Quick Links</h3>
                 <ul class="footer-links">
@@ -1210,7 +1065,6 @@
                     <li><a href="#contact" data-translate="menuContact">Contact</a></li>
                 </ul>
             </div>
-            
             <div>
                 <h3 style="color: white; margin-bottom: 16px;" data-translate="followUsTitle">Follow Us</h3>
                 <div class="social-links">
@@ -1223,23 +1077,18 @@
                 </div>
             </div>
         </div>
-        
         <div class="footer-bottom">
             <p data-translate="copyright">© 2025 Syarar Tech. All rights reserved. Made with ❤️ in Indonesia</p>
         </div>
     </footer>
-    
     <script>
         // Initialize Lucide icons
         lucide.createIcons();
-        
         // Particle Animation
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
-        
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        
         const particles = [];
         for (let i = 0; i < 50; i++) {
             particles.push({
@@ -1251,23 +1100,18 @@
                 opacity: Math.random() * 0.5 + 0.2
             });
         }
-        
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
             particles.forEach(particle => {
                 particle.x += particle.vx;
                 particle.y += particle.vy;
-                
                 if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
                 if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-                
                 ctx.beginPath();
                 ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
                 ctx.fillStyle = `rgba(59, 130, 246, ${particle.opacity})`;
                 ctx.fill();
             });
-            
             // Draw connections
             particles.forEach((p1, i) => {
                 particles.slice(i + 1).forEach(p2 => {
@@ -1281,17 +1125,13 @@
                     }
                 });
             });
-            
             requestAnimationFrame(animateParticles);
         }
-        
         animateParticles();
-        
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         });
-        
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
@@ -1300,11 +1140,9 @@
             } else {
                 navbar.classList.remove('scrolled');
             }
-            
             // Update active nav link
             const sections = ['home', 'services', 'about', 'team', 'testimonials', 'contact'];
             const scrollPosition = window.scrollY + 100;
-            
             sections.forEach(section => {
                 const element = document.getElementById(section);
                 if (element) {
@@ -1320,24 +1158,21 @@
                 }
             });
         });
-        
         // Mobile menu
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
-        
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-        
         // Close mobile menu when clicking on links
         document.querySelectorAll('.mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
             });
         });
-        
         // Testimonials
         let currentTestimonial = 0;
+        let testimonials = []; // Added to store current testimonials array
         
         function showTestimonial(index) {
             currentTestimonial = index;
@@ -1345,11 +1180,20 @@
             document.getElementById('testimonialText').textContent = `"${currentTestimonials[index].text}"`;
             document.getElementById('testimonialAuthor').textContent = currentTestimonials[index].author;
             document.getElementById('testimonialPosition').textContent = currentTestimonials[index].position;
-            
             // Update dots
             document.querySelectorAll('.dot').forEach((dot, i) => {
                 dot.classList.toggle('active', i === index);
             });
+        }
+        
+        // Initialize testimonials array
+        function initializeTestimonials() {
+            const lang = document.getElementById('languageSelect').value;
+            if (translations[lang] && translations[lang].testimonials) {
+                testimonials = translations[lang].testimonials;
+                currentTestimonial = 0;
+                showTestimonial(0);
+            }
         }
         
         // Auto-rotate testimonials
@@ -1358,14 +1202,86 @@
             showTestimonial(currentTestimonial);
         }, 5000);
         
-
+        // Swipe functionality for testimonials - TOUCH
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const testimonialSection = document.getElementById('testimonials');
+        
+        if (testimonialSection) {
+            testimonialSection.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            testimonialSection.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+        }
+        
+        // Mouse drag functionality for testimonials - MOUSE
+        let mouseDownX = 0;
+        let isDragging = false;
+        
+        if (testimonialSection) {
+            testimonialSection.addEventListener('mousedown', e => {
+                mouseDownX = e.clientX;
+                isDragging = true;
+                testimonialSection.style.cursor = 'grabbing';
+            });
+            
+            testimonialSection.addEventListener('mousemove', e => {
+                if (!isDragging) return;
+                e.preventDefault();
+            });
+            
+            document.addEventListener('mouseup', e => {
+                if (!isDragging || !testimonialSection) {
+                    isDragging = false;
+                    testimonialSection.style.cursor = 'default';
+                    return;
+                }
+                
+                const mouseUpX = e.clientX;
+                const diff = mouseDownX - mouseUpX;
+                const swipeThreshold = 50;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        // Dragged left - go to next testimonial
+                        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                    } else {
+                        // Dragged right - go to previous testimonial
+                        currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+                    }
+                    showTestimonial(currentTestimonial);
+                }
+                
+                isDragging = false;
+                testimonialSection.style.cursor = 'default';
+            });
+        }
+        
+        function handleSwipe() {
+            const swipeThreshold = 50; // Minimum distance for a swipe
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swiped left - go to next testimonial
+                    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                } else {
+                    // Swiped right - go to previous testimonial
+                    currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+                }
+                showTestimonial(currentTestimonial);
+            }
+        }
         
         // Scroll reveal animation
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
-        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1374,11 +1290,9 @@
                 }
             });
         }, observerOptions);
-        
         document.querySelectorAll('.opacity-0').forEach(el => {
             observer.observe(el);
         });
-        
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1392,7 +1306,6 @@
                 }
             });
         });
-
         // Language translations
         const translations = {
             en: {
@@ -1744,7 +1657,6 @@
                 ]
             }
         };
-
         function changeLanguage(lang) {
             // Update all elements with data-translate attribute
             const elements = document.querySelectorAll('[data-translate]');
@@ -1763,15 +1675,12 @@
                     }
                 }
             });
-
             // Trigger translation immediately
             document.documentElement.setAttribute('lang', lang);
-            
             // Force a DOM refresh
             document.body.style.display = 'none';
             document.body.offsetHeight; // Trigger a reflow
             document.body.style.display = '';
-            
             // Update navigation links
             document.querySelectorAll('.nav-link').forEach(link => {
                 const key = link.getAttribute('href').substring(1);
@@ -1779,18 +1688,15 @@
                     link.textContent = translations[lang][key];
                 }
             });
-
             // Update testimonials array if translations provided
             if (translations[lang] && translations[lang].testimonials) {
                 testimonials = translations[lang].testimonials;
                 currentTestimonial = 0;
                 showTestimonial(0);
             }
-
             // Save language preference
             localStorage.setItem('preferredLanguage', lang);
         }
-
         // Load preferred language on page load
         document.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('preferredLanguage');
@@ -1799,7 +1705,7 @@
                 langSelect.value = savedLang;
             }
             changeLanguage(langSelect.value);
-            
+            initializeTestimonials();
             // Add event listener for language changes
             langSelect.addEventListener('change', (e) => {
                 changeLanguage(e.target.value);
@@ -1807,7 +1713,6 @@
             });
         });
     </script>
-
-
 </body>
 </html>
+
