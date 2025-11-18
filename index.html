@@ -597,19 +597,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-        /* Fallback image styles */
-        .fallback-img {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-            border-radius: 8px;
-            color: #3b82f6;
-            font-weight: bold;
-            font-size: 16px;
-        }
     </style>
 </head>
 <body>
@@ -620,8 +607,7 @@
         <div class="nav-container">
             <a href="#home" class="logo">
                 <div class="logo-icon" style="width: 30px; height: 30px; margin-right: 10px;">
-                    <!-- Perbaikan URL logo: domain benar dan fallback jika gambar gagal dimuat -->
-                    <img src="https://i.ibb.co/GQC7w1d1/logo.jpg" alt="Syarar Tech Logo" style="width:100%;height:100%;" onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-weight:bold\'>ST</div>';">
+                    <img src="https://i.ibb.co.com/GQC7w1d1/logo.jpg" alt="Syarar Tech Logo" style="width:100%;height:100%;">
                 </div>
                 <span class="logo-text gradient-text" data-translate="brandName">Syarar Tech</span>
             </a>
@@ -798,8 +784,7 @@
                     <div style="position: relative;">
                         <div style="width: 400px; height: 400px; margin: 0 auto; background: linear-gradient(135deg, rgba(13, 38, 76, 0.2), rgba(28, 78, 128, 0.2)); border-radius: 16px; display: flex; align-items: center; justify-content: center; animation: pulse-glow 2s ease-in-out infinite; overflow: hidden; box-shadow: 0 0 40px rgba(28, 78, 128, 0.3);">
                             <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, rgba(28, 78, 128, 0.1) 0%, rgba(13, 38, 76, 0.2) 100%);">
-                                <!-- Perbaikan URL logo: domain benar dan fallback jika gambar gagal dimuat -->
-                                <img src="https://i.ibb.co/xqycQ0B8/logo.jpg" alt="Syarar Tech Logo" style="width: 100%; height: 100%; object-fit: contain; padding: 15px;" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'fallback-img\'>Logo Syarar Tech</div>';">
+                                <img src="https://i.ibb.co/xqycQ0B8/logo.jpg" alt="Syarar Tech Logo" style="width: 100%; height: 100%; object-fit: contain; padding: 15px;">
                             </div>
                         </div>
                     </div>
@@ -817,8 +802,7 @@
             <div class="grid grid-3">
                 <div class="card team-card opacity-0" style="text-align: center;">
                     <div class="team-avatar" style="width: 100%; height: 350px; border-radius: 8px; overflow: hidden; margin-bottom: 20px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));">
-                        <!-- Perbaikan URL dan fallback -->
-                        <img src="https://i.ibb.co/rGxJPGhd/apik-rendi.jpg" alt="Apik Rendi Firmansyah" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;border-radius:8px;" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'fallback-img\'>Apik Rendi</div>';">
+                        <img src="https://i.ibb.co/rGxJPGhd/apik-rendi.jpg" alt="Apik Rendi Firmansyah" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;border-radius:8px;">
                     </div>
                     <h3 style="margin-bottom: 8px; font-size: 24px;">Apik Rendi Firmansyah</h3>
                     <div class="badge badge-primary" style="margin-bottom: 12px; display: inline-block;"><span data-translate="hardwareSpec">Hardware Specialist</span></div>
@@ -842,8 +826,7 @@
                 </div>
                 <div class="card team-card opacity-0" style="text-align: center;">
                     <div class="team-avatar" style="width: 100%; height: 350px; border-radius: 8px; overflow: hidden; margin-bottom: 20px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));">
-                        <!-- Perbaikan URL dan fallback -->
-                        <img src="https://i.ibb.co/XxYRYw7q/mochammad-rizqi.jpg" alt="Mochammad Rizqi Dirgantoro" style="width:100%;height:100%;object-fit:cover;object-position:center 25%;border-radius:8px;" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'fallback-img\'>M. Rizqi</div>';">
+                        <img src="https://i.ibb.co/XxYRYw7q/mochammad-rizqi.jpg" alt="Mochammad Rizqi Dirgantoro" style="width:100%;height:100%;object-fit:cover;object-position:center 25%;border-radius:8px;">
                     </div>
                     <h3 style="margin-bottom: 8px; font-size: 24px;">Mochammad Rizqi Dirgantoro</h3>
                     <div class="badge badge-primary" style="margin-bottom: 12px;" data-translate="softwareEng">Software Engineer</div>
@@ -865,10 +848,9 @@
                         <span class="skill-badge" data-translate="sysOptimize">System Optimization</span>
                     </div>
                 </div>
-                <div class="card team-card opacity-0" style="text-align: center;">
+                <div class="card team-card opacity-0">
                     <div class="team-avatar" style="width: 100%; height: 350px; border-radius: 8px; overflow: hidden; margin-bottom: 20px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));">
-                        <!-- Perbaikan URL dan fallback -->
-                        <img src="https://i.ibb.co/rfk33GcP/muhammad-rio.jpg" alt="Muhammad Rio Al Awal" style="width:100%;height:100%;object-fit:cover;object-position:center 25%;border-radius:8px;" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'fallback-img\'>M. Rio</div>';">
+                        <img src="https://i.ibb.co/rfk33GcP/muhammad-rio.jpg" alt="Muhammad Rio Al Awal" style="width:100%;height:100%;object-fit:cover;object-position:center 25%;border-radius:8px;">
                     </div>
                     <h3 style="margin-bottom: 8px; font-size: 24px;">Muhammad Rio Al Awal</h3>
                     <div class="badge badge-primary" style="margin-bottom: 12px;" data-translate="networkEng">Network Engineer</div>
@@ -892,8 +874,7 @@
                 </div>
                 <div class="card team-card opacity-0">
                     <div class="team-avatar" style="width: 100%; height: 350px; border-radius: 8px; overflow: hidden; margin-bottom: 20px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));">
-                        <!-- Perbaikan URL dan fallback -->
-                        <img src="https://i.ibb.co/275cSQrj/yaqut-mubarok.jpg" alt="Yaqut Mubarok Nailur Raja" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;border-radius:8px;" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'fallback-img\'>Y. Mubarok</div>';">
+                        <img src="https://i.ibb.co/275cSQrj/yaqut-mubarok.jpg" alt="Yaqut Mubarok Nailur Raja" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;border-radius:8px;">
                     </div>
                     <h3 style="margin-bottom: 8px; font-size: 24px;">Yaqut Mubarok Nailur Raja</h3>
                     <div class="badge badge-primary" style="margin-bottom: 12px;"><span data-translate="dataRecovery">Data Recovery Expert</span></div>
@@ -911,19 +892,17 @@
                     <div class="skills">
                         <span class="skill-badge" data-translate="dataRecoverySkills">Data Recovery</span>
                         <span class="skill-badge" data-translate="backupSol">Backup Solutions</span>
-                        <span class="skill-badge" data-translate="digitalForensics">Digital Forensics</span>
+                        <span class="skill-badge" data-translate="digitalForensics">Forensik Digital</span>
                         <span class="skill-badge" data-translate="raidRecovery">RAID Recovery</span>
                     </div>
                 </div>
                 <div class="card team-card opacity-0">
                     <div class="team-avatar" style="width: 100%; height: 350px; border-radius: 8px; overflow: hidden; margin-bottom: 20px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));">
-                        <!-- Perbaikan URL dan fallback -->
-                        <img src="https://i.ibb.co/Ng2jXB7w/bagus-zandra.jpg" alt="Bagus Zandra Ihsani" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;border-radius:8px;" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'fallback-img\'>B. Zandra</div>';">
+                        <img src="https://i.ibb.co/Ng2jXB7w/bagus-zandra.jpg" alt="Bagus Zandra Ihsani" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;border-radius:8px;">
                     </div>
                     <h3 style="margin-bottom: 8px; font-size: 24px;">Bagus Zandra Ihsani</h3>
                     <div class="badge badge-primary" style="margin-bottom: 12px;"><span data-translate="gamingSpec">Gaming PC Builder</span></div>
                     <p style="color: #6B7280; font-size: 16px; margin-bottom: 16px;" data-translate="gamingSpecDesc">
-                        Expert dalam pembuatan PC gaming dan optimasi performa
                     </p>
                     <div style="margin-bottom: 16px; display: flex; gap: 12px; justify-content: center;">
                         <a href="https://www.instagram.com/zandraisani" target="_blank" style="color: #3B82F6; text-decoration: none;">
@@ -942,13 +921,11 @@
                 </div>
                 <div class="card team-card opacity-0">
                     <div class="team-avatar" style="width: 100%; height: 350px; border-radius: 8px; overflow: hidden; margin-bottom: 20px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));">
-                        <!-- Perbaikan URL dan fallback -->
-                        <img src="https://i.ibb.co/0ywzRFcg/reski-angga.jpg" alt="Reski Angga Pratama" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;border-radius:8px;" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'fallback-img\'>R. Angga</div>';">
+                        <img src="https://i.ibb.co/0ywzRFcg/reski-angga.jpg" alt="Reski Angga Pratama" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;border-radius:8px;">
                     </div>
                     <h3 style="margin-bottom: 8px; font-size: 24px;">Reski Angga Pratama</h3>
                     <div class="badge badge-primary" style="margin-bottom: 12px;"><span data-translate="custRelations">Customer Relations</span></div>
                     <p style="color: #6B7280; font-size: 16px; margin-bottom: 16px;" data-translate="custRelationsDesc">
-                        Koordinator layanan pelanggan dan manajer proyek
                     </p>
                     <div style="margin-bottom: 16px; display: flex; gap: 12px; justify-content: center;">
                         <a href="https://www.instagram.com/reskianggaa" target="_blank" style="color: #3B82F6; text-decoration: none;">
@@ -1070,8 +1047,7 @@
             <div>
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
                     <div style="width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-                        <!-- Perbaikan URL logo: domain benar dan fallback -->
-                        <img src="https://i.ibb.co/GQC7w1d1/logo.jpg" alt="Syarar Tech Logo" style="width:32px;height:32px;" onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\'width:32px;height:32px;background:#3b82f6;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:bold\'>ST</div>';">
+                        <img src="https://i.ibb.co.com/GQC7w1d1/logo.jpg" alt="Syarar Tech Logo" style="width:32px;height:32px;">
                     </div>
                     <span style="font-size: 20px; font-weight: bold;" class="gradient-text" data-translate="brandName">Syarar Tech</span>
                 </div>
@@ -1665,11 +1641,7 @@
                 ]
             }
         };
-        
-        let currentLanguage = 'id'; // Default language
-        
         function changeLanguage(lang) {
-            currentLanguage = lang;
             // Update all elements with data-translate attribute
             const elements = document.querySelectorAll('[data-translate]');
             elements.forEach(element => {
@@ -1722,12 +1694,6 @@
             langSelect.addEventListener('change', (e) => {
                 changeLanguage(e.target.value);
                 localStorage.setItem('preferredLanguage', e.target.value);
-            });
-            
-            // Make canvas responsive to resize
-            window.addEventListener('resize', () => {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
             });
         });
     </script>
